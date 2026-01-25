@@ -1,6 +1,17 @@
 apiVersion: 1
 
 datasources:
+  - name: munchies
+    uid: df95d61129vy8b
+    type: mysql
+    url: munchies-mysql:3306
+    user: ${MUNCHIES_USERNAME}
+    access: proxy
+    jsonData:
+      database: ${MUNCHIES_DATABASE}
+      sslmode: disable
+    secureJsonData:
+      password: ${MUNCHIES_PASSWORD}
   - name: notes
     uid: fkdi59flh03jd7
     type: mysql
