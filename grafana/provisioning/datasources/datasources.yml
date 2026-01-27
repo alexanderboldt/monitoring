@@ -12,6 +12,17 @@ datasources:
       sslmode: disable
     secureJsonData:
       password: ${MUNCHIES_PASSWORD}
+  - name: musiccollection
+    uid: mu3kf8s5asm98n
+    type: postgres
+    url: musiccollection-postgres:5432
+    user: ${MUSICCOLLECTION_USERNAME}
+    access: proxy
+    jsonData:
+      database: ${MUSICCOLLECTION_DATABASE}
+      sslmode: disable
+    secureJsonData:
+      password: ${MUSICCOLLECTION_PASSWORD}
   - name: notes
     uid: fkdi59flh03jd7
     type: mysql
