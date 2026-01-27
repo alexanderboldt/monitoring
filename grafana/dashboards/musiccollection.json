@@ -136,7 +136,7 @@
       },
       "gridPos": {
         "h": 8,
-        "w": 18,
+        "w": 13,
         "x": 6,
         "y": 0
       },
@@ -192,6 +192,94 @@
       ],
       "title": "Recent Artist",
       "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "mu3kf8s5asm98n"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            }
+          },
+          "mappings": []
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 5,
+        "x": 19,
+        "y": 0
+      },
+      "id": 5,
+      "options": {
+        "displayLabels": [
+          "value"
+        ],
+        "legend": {
+          "displayMode": "list",
+          "placement": "right",
+          "showLegend": true,
+          "values": []
+        },
+        "pieType": "pie",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": true
+        },
+        "sort": "asc",
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.3.1",
+      "targets": [
+        {
+          "dataset": "musiccollection",
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "mu3kf8s5asm98n"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT\n  CASE\n    WHEN filename IS NOT NULL THEN 'With image'\n    ELSE 'Without image'\n  END AS status,\n  COUNT(*) AS artists\nFROM artistentity\nGROUP BY status;",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "Artist attached Image",
+      "type": "piechart"
     },
     {
       "datasource": {
@@ -308,7 +396,7 @@
       },
       "gridPos": {
         "h": 8,
-        "w": 18,
+        "w": 13,
         "x": 6,
         "y": 8
       },
@@ -364,6 +452,94 @@
       ],
       "title": "Recent Album",
       "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "mu3kf8s5asm98n"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            }
+          },
+          "mappings": []
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 5,
+        "x": 19,
+        "y": 8
+      },
+      "id": 6,
+      "options": {
+        "displayLabels": [
+          "value"
+        ],
+        "legend": {
+          "displayMode": "list",
+          "placement": "right",
+          "showLegend": true,
+          "values": []
+        },
+        "pieType": "pie",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": true
+        },
+        "sort": "asc",
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.3.1",
+      "targets": [
+        {
+          "dataset": "musiccollection",
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "mu3kf8s5asm98n"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT\n  CASE\n    WHEN filename IS NOT NULL THEN 'With image'\n    ELSE 'Without image'\n  END AS status,\n  COUNT(*) AS artists\nFROM albumentity\nGROUP BY status;",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "Album attached Image",
+      "type": "piechart"
     }
   ],
   "preload": false,
@@ -381,5 +557,5 @@
   "timezone": "browser",
   "title": "Music Collection",
   "uid": "mu38fjl",
-  "version": 1
+  "version": 4
 }
