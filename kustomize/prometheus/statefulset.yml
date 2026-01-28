@@ -1,0 +1,53 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: monitoring-prometheus
+spec:
+  selector:
+    app: monitoring-prometheus
+  ports:
+    - port: 9090
+      targetPort: 9090
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: monitoring-prometheus
+spec:
+  serviceName: monitoring-prometheus
+  replicas: 1
+  selector:
+    matchLabels:
+      app: monitoring-prometheus
+  template:
+    metadata:
+      labels:
+        app: monitoring-prometheus
+    spec:
+      containers:
+        - name: monitoring-prometheus
+          image: prom/prometheus:latest
+          args:
+            - "--config.file=/etc/prometheus/prometheus.yml"
+            - "--storage.tsdb.path=/prometheus"
+            - "--storage.tsdb.retention.time=15d"
+          ports:
+            - containerPort: 9090
+          volumeMounts:
+            - name: monitoring-prometheus-config
+              mountPath: /etc/prometheus
+              readOnly: true
+            - name: monitoring-prometheus-storage
+              mountPath: /prometheus
+      volumes:
+        - name: monitoring-prometheus-config
+          configMap:
+            name: monitoring-prometheus-config
+  volumeClaimTemplates:
+    - metadata:
+        name: monitoring-prometheus-storage
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: 10Gi
