@@ -15,7 +15,7 @@ datasources:
   - name: musiccollection
     uid: mu3kf8s5asm98n
     type: postgres
-    url: musiccollection-postgres:5432
+    url: ${MUSICCOLLECTION_URL}
     user: ${MUSICCOLLECTION_USERNAME}
     access: proxy
     jsonData:
@@ -26,7 +26,7 @@ datasources:
   - name: notes
     uid: fkdi59flh03jd7
     type: mysql
-    url: notes-mysql:3306
+    url: ${NOTES_URL}
     user: ${NOTES_USERNAME}
     access: proxy
     jsonData:
