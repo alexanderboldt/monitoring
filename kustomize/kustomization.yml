@@ -1,0 +1,11 @@
+namespace: monitoring
+
+resources:
+  - namespace.yml
+  - node-exporter/deployment.yml
+  - prometheus/statefulset.yml
+
+configMapGenerator:
+  - name: monitoring-prometheus-config
+    files:
+      - prometheus/prometheus.yml
