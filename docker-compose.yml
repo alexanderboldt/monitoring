@@ -15,7 +15,7 @@ services:
       - 9090:9090
     volumes:
       - prometheus_data:/prometheus
-      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - ./kustomize/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
     depends_on:
       - monitoring-node-exporter
     networks:
@@ -29,8 +29,8 @@ services:
     env_file: grafana.env
     volumes:
       - grafana_data:/var/lib/grafana
-      - ./grafana/provisioning:/etc/grafana/provisioning
-      - ./grafana/dashboards:/var/lib/grafana/dashboards
+      - ./kustomize/grafana/provisioning:/etc/grafana/provisioning
+      - ./kustomize/grafana/dashboards:/var/lib/grafana/dashboards
     networks:
       - monitoring
 

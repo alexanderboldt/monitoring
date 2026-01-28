@@ -1,0 +1,56 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: monitoring-grafana
+spec:
+  selector:
+    app: monitoring-grafana
+  ports:
+    - port: 3000
+      targetPort: 3000
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: monitoring-grafana
+spec:
+  selector:
+    matchLabels:
+      app: monitoring-grafana
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: monitoring-grafana
+    spec:
+      containers:
+        - name: monitoring-grafana
+          image: grafana/grafana:latest
+          imagePullPolicy: IfNotPresent
+          envFrom:
+            - secretRef:
+                name: monitoring-grafana-secret
+          ports:
+            - containerPort: 3000
+          volumeMounts:
+            - name: monitoring-grafana-storage
+              mountPath: /var/lib/grafana
+            - name: monitoring-grafana-provisioning-dashboards-config
+              mountPath: /etc/grafana/provisioning/dashboards
+            - name: monitoring-grafana-provisioning-datasources-config
+              mountPath: /etc/grafana/provisioning/datasources
+            - name: monitoring-grafana-dashboards-config
+              mountPath: /var/lib/grafana/dashboards
+      volumes:
+        - name: monitoring-grafana-storage
+          persistentVolumeClaim:
+            claimName: monitoring-grafana-storage
+        - name: monitoring-grafana-provisioning-dashboards-config
+          configMap:
+            name: monitoring-grafana-provisioning-dashboards-config
+        - name: monitoring-grafana-provisioning-datasources-config
+          configMap:
+            name: monitoring-grafana-provisioning-datasources-config
+        - name: monitoring-grafana-dashboards-config
+          configMap:
+            name: monitoring-grafana-dashboards-config
