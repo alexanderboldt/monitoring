@@ -23,6 +23,17 @@ datasources:
       sslmode: disable
     secureJsonData:
       password: ${MUSICCOLLECTION_PASSWORD}
+  - name: musiccollection-keycloak
+    uid: mukey3jg9hknu4
+    type: postgres
+    url: ${MUSICCOLLECTION_KEYCLOAK_URL}
+    user: ${MUSICCOLLECTION_KEYCLOAK_USERNAME}
+    access: proxy
+    jsonData:
+      database: ${MUSICCOLLECTION_KEYCLOAK_DATABASE}
+      sslmode: disable
+    secureJsonData:
+      password: ${MUSICCOLLECTION_KEYCLOAK_PASSWORD}
   - name: prometheus
     uid: ef98vg6y97da8a
     type: prometheus

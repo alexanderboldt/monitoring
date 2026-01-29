@@ -18,7 +18,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 3,
+  "id": 2,
   "links": [],
   "panels": [
     {
@@ -49,8 +49,8 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
-        "w": 6,
+        "h": 7,
+        "w": 4,
         "x": 0,
         "y": 0
       },
@@ -135,9 +135,9 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
-        "w": 13,
-        "x": 6,
+        "h": 7,
+        "w": 6,
+        "x": 4,
         "y": 0
       },
       "id": 2,
@@ -215,9 +215,9 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
-        "w": 5,
-        "x": 19,
+        "h": 7,
+        "w": 4,
+        "x": 10,
         "y": 0
       },
       "id": 5,
@@ -291,6 +291,27 @@
           "color": {
             "mode": "thresholds"
           },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "fillOpacity": 100,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -309,10 +330,108 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
-        "w": 6,
+        "h": 14,
+        "w": 10,
+        "x": 14,
+        "y": 0
+      },
+      "id": 7,
+      "options": {
+        "barRadius": 0,
+        "barWidth": 0.96,
+        "fullHighlight": false,
+        "groupWidth": 0.7,
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "orientation": "auto",
+        "showValue": "auto",
+        "stacking": "none",
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        },
+        "xField": "artist",
+        "xTickLabelRotation": 0,
+        "xTickLabelSpacing": 0
+      },
+      "pluginVersion": "12.3.1",
+      "targets": [
+        {
+          "dataset": "musiccollection",
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "mu3kf8s5asm98n"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "select artistentity.name as Artist, count(albumentity.id) as \"Total Albums\" from artistentity\nfull join albumentity on artistentity.id = albumentity.artistid\ngroup by artistentity.id\norder by \"Total Albums\" desc;",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [
+                  {
+                    "name": "id",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          },
+          "table": "albumentity"
+        }
+      ],
+      "title": "Album Count per Artist",
+      "type": "barchart"
+    },
+    {
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "mu3kf8s5asm98n"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 4,
         "x": 0,
-        "y": 8
+        "y": 7
       },
       "id": 3,
       "options": {
@@ -395,10 +514,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
-        "w": 13,
-        "x": 6,
-        "y": 8
+        "h": 7,
+        "w": 6,
+        "x": 4,
+        "y": 7
       },
       "id": 4,
       "options": {
@@ -475,10 +594,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
-        "w": 5,
-        "x": 19,
-        "y": 8
+        "h": 7,
+        "w": 4,
+        "x": 10,
+        "y": 7
       },
       "id": 6,
       "options": {
@@ -544,33 +663,12 @@
     {
       "datasource": {
         "type": "grafana-postgresql-datasource",
-        "uid": "mu3kf8s5asm98n"
+        "uid": "mukey3jg9hknu4"
       },
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "thresholds"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "fillOpacity": 100,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineWidth": 1,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
           },
           "mappings": [],
           "thresholds": {
@@ -590,57 +688,46 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 14,
-        "w": 24,
+        "h": 7,
+        "w": 4,
         "x": 0,
-        "y": 16
+        "y": 14
       },
-      "id": 7,
+      "id": 8,
       "options": {
-        "barRadius": 0,
-        "barWidth": 0.96,
-        "fullHighlight": false,
-        "groupWidth": 0.7,
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": false
-        },
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
         "orientation": "auto",
-        "showValue": "auto",
-        "stacking": "none",
-        "tooltip": {
-          "hideZeros": false,
-          "mode": "single",
-          "sort": "none"
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^count$/",
+          "values": false
         },
-        "xField": "artist",
-        "xTickLabelRotation": 0,
-        "xTickLabelSpacing": 0
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
       },
       "pluginVersion": "12.3.1",
       "targets": [
         {
-          "dataset": "musiccollection",
+          "dataset": "keycloak",
           "datasource": {
             "type": "grafana-postgresql-datasource",
-            "uid": "mu3kf8s5asm98n"
+            "uid": "mukey3jg9hknu4"
           },
           "editorMode": "code",
           "format": "table",
           "rawQuery": true,
-          "rawSql": "select artistentity.name as Artist, count(albumentity.id) as \"Total Albums\" from artistentity\nfull join albumentity on artistentity.id = albumentity.artistid\ngroup by artistentity.id\norder by \"Total Albums\" desc;",
+          "rawSql": "select count(*) from user_entity;",
           "refId": "A",
           "sql": {
             "columns": [
               {
-                "parameters": [
-                  {
-                    "name": "id",
-                    "type": "functionParameter"
-                  }
-                ],
+                "parameters": [],
                 "type": "function"
               }
             ],
@@ -653,12 +740,97 @@
               }
             ],
             "limit": 50
-          },
-          "table": "albumentity"
+          }
         }
       ],
-      "title": "Album Count per Artist",
-      "type": "barchart"
+      "title": "Total Users",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "mukey3jg9hknu4"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 10,
+        "x": 4,
+        "y": 14
+      },
+      "id": 9,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/.*/",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "value",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.3.1",
+      "targets": [
+        {
+          "dataset": "keycloak",
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "mukey3jg9hknu4"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "select first_name, last_name from user_entity order by created_timestamp desc;",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "Recent User",
+      "type": "stat"
     }
   ],
   "preload": false,
@@ -676,5 +848,5 @@
   "timezone": "browser",
   "title": "Music Collection",
   "uid": "mu38fjl",
-  "version": 5
+  "version": 1
 }
