@@ -21,7 +21,6 @@ configMapGenerator:
     files:
       - grafana/dashboards/munchies.json
       - grafana/dashboards/musiccollection.json
-      - grafana/dashboards/notes.json
       - grafana/dashboards/system.json
 
 secretGenerator:

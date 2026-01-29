@@ -23,17 +23,6 @@ datasources:
       sslmode: disable
     secureJsonData:
       password: ${MUSICCOLLECTION_PASSWORD}
-  - name: notes
-    uid: fkdi59flh03jd7
-    type: mysql
-    url: ${NOTES_URL}
-    user: ${NOTES_USERNAME}
-    access: proxy
-    jsonData:
-      database: ${NOTES_DATABASE}
-      sslmode: disable
-    secureJsonData:
-      password: ${NOTES_PASSWORD}
   - name: prometheus
     uid: ef98vg6y97da8a
     type: prometheus
