@@ -4,7 +4,7 @@ datasources:
   - name: munchies
     uid: df95d61129vy8b
     type: mysql
-    url: munchies-mysql:3306
+    url: ${MUNCHIES_URL}
     user: ${MUNCHIES_USERNAME}
     access: proxy
     jsonData:
@@ -37,7 +37,7 @@ datasources:
   - name: prometheus
     uid: ef98vg6y97da8a
     type: prometheus
-    url: http://monitoring-prometheus:9090
+    url: ${PROMETHEUS_URL}
     access: proxy
     jsonData:
       httpMethod: GET
