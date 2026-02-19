@@ -32,6 +32,8 @@ services:
       - ./kustomize/grafana/provisioning:/etc/grafana/provisioning
       - ./kustomize/grafana/dashboards:/var/lib/grafana/dashboards
     networks:
+      - musiccollection
+      - munchies
       - monitoring
 
 volumes:
@@ -39,5 +41,9 @@ volumes:
   grafana_data:
 
 networks:
+  musiccollection:
+    external: true
+  munchies:
+    external: true
   monitoring:
     name: monitoring
