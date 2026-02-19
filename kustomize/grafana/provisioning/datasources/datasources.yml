@@ -12,6 +12,17 @@ datasources:
       sslmode: disable
     secureJsonData:
       password: ${MUNCHIES_PASSWORD}
+  - name: munchies-keycloak
+    uid: mukey93kfmc8y2
+    type: mysql
+    url: ${MUNCHIES_KEYCLOAK_URL}
+    user: ${MUNCHIES_KEYCLOAK_USERNAME}
+    access: proxy
+    jsonData:
+      database: ${MUNCHIES_KEYCLOAK_DATABASE}
+      sslmode: disable
+    secureJsonData:
+      password: ${MUNCHIES_KEYCLOAK_PASSWORD}
   - name: musiccollection
     uid: mu3kf8s5asm98n
     type: postgres
