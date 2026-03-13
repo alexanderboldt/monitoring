@@ -18,3 +18,10 @@ Delete the project namespace and the objects if not needed anymore:
 ```bash
 kubectl delete namespace monitoring
 ```
+
+## Screenshots
+### System Metrics
+![System](screenshots/dashboard_system.png)
+
+### Database Metrics of Project Musiccollection
+![System](screenshots/dashboard_musiccollection.png)
