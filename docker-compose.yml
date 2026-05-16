@@ -1,12 +1,12 @@
 services:
   monitoring-node-exporter:
-    image: prom/node-exporter:latest
+    image: prom/node-exporter:v1.11.1
     container_name: monitoring-node-exporter
     networks:
       - monitoring
 
   monitoring-prometheus:
-    image: prom/prometheus:latest
+    image: prom/prometheus:v3.11.3
     container_name: monitoring-prometheus
     command:
       - "--storage.tsdb.retention.time=15d"
@@ -22,7 +22,7 @@ services:
       - monitoring
 
   monitoring-grafana:
-    image: grafana/grafana:latest
+    image: grafana/grafana:13.0.1
     container_name: monitoring-grafana
     ports:
       - 3000:3000
